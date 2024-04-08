@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +11,11 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Cadastro de Cliente</title>
 </head>
-
 <body>
     <div class="d-flex flex-column">
         <nav class="site-nav navbar navbar-expand-lg fixed navbar navbar-light shadow-sm mb-3 py-4">
             <div class="container">
-                <a class="navbar-brand" href="/index.html"><b></b>BORSELLA</a>
+                <a class="navbar-brand" href="index.html"><b></b>BORSELLA</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -25,10 +23,10 @@
                 <div class="collapse navbar-collapse" id="menuNavbar">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-4 gap-4">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/index.html">Home</a>
+                            <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/comprar.html">Comprar</a>
+                            <a class="nav-link" href="comprar.html">Comprar</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
@@ -36,7 +34,7 @@
                                 Cadastros
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="cadCliente.html">Cadastro Cliente</a>
+                                <a class="dropdown-item" href="Client.html">Cadastro Cliente</a>
                                 <a class="dropdown-item" href="Product.html">Cadastro Produto</a>
                                 <a class="dropdown-item" href="cadFuncionario.html">Cadastro Funcionário</a>
                             </div>
@@ -81,31 +79,28 @@
                 <input type="text" id="rua" name="rua" required>
             </div>
             <div class="form-group">
-              <label for="tamanho">CEP:</label>
-              <input type="text" id="cep" name="cep" required>
-          </div>
-          <div class="form-group">
-            <label for="tamanho">Bairro:</label>
-            <input type="text" id="bairro" name="bairro" required>
-          </div>
-          <div class="form-group">
-            <label for="tamanho">Cidade:</label>
-            <input type="text" id="cidade" name="cidade" required>
-          </div>
-          <div class="form-group">
-            <label for="tamanho">Estado:</label>
-            <input type="text" id="estado" name="estado" required>
-          </div>
-        
+                <label for="tamanho">CEP:</label>
+                <input type="text" id="cep" name="cep" required>
+            </div>
+            <div class="form-group">
+                <label for="tamanho">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required>
+            </div>
+            <div class="form-group">
+                <label for="tamanho">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+            </div>
+            <div class="form-group">
+                <label for="tamanho">Estado:</label>
+                <input type="text" id="estado" name="estado" required>
+            </div>
             <br>
             <div>
                 <input class="button" type="submit" value="Enviar">
-                </div>    
+            </div>
         </form>
     </main>
-
-   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/cliente.js"></script>
 </body>
-
 </html>

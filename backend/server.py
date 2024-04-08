@@ -75,7 +75,6 @@ def criar_produto(produto: Produto):
     return produto
 
     
-
 # DELETE
 @app.delete('/produtos/{produto_id}')
 def remover_produto(produto_id: int):
@@ -92,7 +91,7 @@ def remover_produto(produto_id: int):
 # GET LISTAR
 @app.get("/clientes")
 def get_clientes():
-    return banco_pessoa;
+    return banco_pessoa
 
 
 # GET LISTAR POR ID
@@ -107,12 +106,10 @@ def obter_cliente(cliente_id: int):
 @app.post('/clientes', response_model=Pessoa)  # Definindo o modelo de resposta como Produto
 def criar_cliente(pessoa: Pessoa):
     global proximo_id_Pessoa  # Acessa a variável global
-    Pessoa.codigo_pessoa = proximo_id_Pessoa  # Atribui o próximo ID ao produto
+    pessoa.codigo_pessoa = proximo_id_Pessoa  # Atribui o próximo ID ao produto
     banco_pessoa.append(pessoa)
     proximo_id_Pessoa += 1  # Incrementa o próximo ID
-    return Pessoa
-
-    
+    return pessoa
 
 # DELETE
 @app.delete('/clientes/{cliente_id}')
