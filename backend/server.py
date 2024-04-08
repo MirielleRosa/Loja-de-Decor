@@ -86,6 +86,43 @@ def remover_produto(produto_id: int):
     return {"Erro": "Produto não localizado"}
 
 
+# CLIENTES
+
+
+# GET LISTAR
+@app.get("/clientes")
+def get_clientes():
+    return banco_pessoa;
+
+
+# GET LISTAR POR ID
+@app.get('/clientes/{cliente_id}')
+def obter_cliente(cliente_id: int):
+    for cliente in banco_pessoa:
+        if cliente.codigo_pessoa == cliente_id:
+            return cliente
+    return {"Erro": "Cliente não localizado"}
+
+
+@app.post('/clientes', response_model=Pessoa)  # Definindo o modelo de resposta como Produto
+def criar_cliente(pessoa: Pessoa):
+    global proximo_id_Pessoa  # Acessa a variável global
+    Pessoa.codigo_pessoa = proximo_id_Pessoa  # Atribui o próximo ID ao produto
+    banco_pessoa.append(pessoa)
+    proximo_id_Pessoa += 1  # Incrementa o próximo ID
+    return Pessoa
+
+    
+
+# DELETE
+@app.delete('/clientes/{cliente_id}')
+def remover_cliente(cliente_id: int):
+    for index, pessoa in enumerate(banco_pessoa):
+        if pessoa.codigo_pessoa == cliente_id:
+            banco_pessoa.pop(index)
+            return {"mensagem":"Cliente removido com sucesso"}
+    return {"Erro": "Cliente não localizado"}
+
 
 
 
