@@ -134,7 +134,41 @@ def remover_cliente(cliente_id: int):
             return {"mensagem":"Cliente removido com sucesso"}
     return {"Erro": "Cliente não localizado"}
 
+# FUNCIONARIOS
 
+
+# GET LISTAR
+@app.get("/funcionarios")
+def get_funcionarios():
+    return banco_funcionario
+
+
+# GET LISTAR POR ID
+@app.get('/funcionarios/{funcionario_id}')
+def obter_funcionario(funcionario_id: int):
+    for funcionario in banco_funcionario:
+        if funcionario.codigo_funcionario == funcionario_id:
+            return funcionario
+    return {"Erro": "Funcionario não localizado"}
+
+
+@app.post('/funcionarios', response_model=Funcionario)
+def criar_funcionario(funcionario: Funcionario):
+    global proximo_id_Funcionario
+    funcionario.codigo_funcionario = proximo_id_Funcionario 
+    banco_funcionario.append(funcionario)
+    proximo_id_Funcionario += 1
+    return funcionario
+
+
+# DELETE
+@app.delete('/funcionarios/{funcionario_id}')
+def remover_funcionario(funcionario_id: int):
+    for index, funcionario in enumerate(banco_funcionario):
+        if funcionario.codigo_funcionario == funcionario_id:
+            banco_funcionario.pop(index)
+            return {"mensagem":"Funcionario removido com sucesso"}
+    return {"Erro": "Funcionario não localizado"}
 
 
 
