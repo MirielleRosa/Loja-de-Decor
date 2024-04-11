@@ -34,7 +34,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="Client.html">Cadastro Cliente</a>
               <a class="dropdown-item" href="Product.html">Cadastro Produto</a>
-              <a class="dropdown-item" href="cadFuncionario.html">Cadastro Funcionário</a>
+              <a class="dropdown-item" href="cadFuncionario.html" active>Cadastro Funcionário</a>
             </div>
           </li>
         </ul>
@@ -42,5 +42,78 @@
     </div>
     </div>
   </nav>
+
+  <div class="container mt-4">
+    <ul id="listaFuncionarios"></ul>
+    <div class="d-flex mt-5 p-4 gap-2">
+      <a href="funcionario.html" class="btn btn-primary me-4" id="inserir" type="button" role="button">Inserir</a>
+      <a href="funcionario.html" class="btn btn-warning me-4 text-light" id="alterar" type="button"
+        role="button">Alterar</a>
+      <a href="funcionario.html" class="btn btn-danger me-4" id="remover" type="button" role="button">Remover</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const listaFuncionarios = document.getElementById('listaFuncionarios');
+
+    async function carregarFuncionarios() {
+      try {
+        const response = await axios.get('http://localhost:8000/funcionarios');
+        const funcionarios = response.data;
+
+        listaFuncionarios.innerHTML = '';
+        const table = document.createElement('table');
+        table.classList.add('table', 'table-striped', 'table-hover');
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `
+                      <th scope="col">#</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">E-mail</th>
+                      <th scope="col">Data Nasc.</th>
+                      <th scope="col">Telefone</th>
+                      <th scope="col">CPF</th>
+                      <th scope="col">Rua</th>
+                      <th scope="col">CEP</th>
+                      <th scope="col">Bairro</th>
+                      <th scope="col">Cidade</th>
+                      <th scope="col">Estado</th>
+                  `;
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        funcionarios.forEach(funcionario => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+                          <td>${funcionario.codigo_funcionario}</td>
+                          <td>${funcionario.txtNomeCompleto}</td>
+                          <td>${funcionario.email}</td>
+                          <td>${funcionario.dataNascimento}</td>
+                          <td>${funcionario.telefone}</td>
+                          <td>${funcionario.cpf}</td>
+                          <td>${funcionario.rua}</td>
+                          <td>${funcionario.cep}</td>
+                          <td>${funcionario.bairro}</td>
+                          <td>${funcionario.cidade}</td>
+                          <td>${funcionario.estado}</td>
+                      `;
+          tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+
+        listaFuncionarios.appendChild(table);
+      } catch (error) {
+        console.error('Erro ao carregar funcionarios:', error);
+        alert('Erro ao carregar funcionarios. Tente novamente mais tarde.');
+      }
+    }
+    carregarFuncionarios();
+  });
+</script>
 </body>
 </html>
