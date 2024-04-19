@@ -81,12 +81,12 @@ def obter_produto(produto_id: int):
     return {"Erro": "Produto não localizado"}
 
 
-@app.post('/produtos', response_model=Produto)  # Definindo o modelo de resposta como Produto
+@app.post('/produtos', response_model=Produto)  
 def criar_produto(produto: Produto):
-    global proximo_id_prod  # Acessa a variável global
-    produto.codigo_produto = proximo_id_prod  # Atribui o próximo ID ao produto
+    global proximo_id_prod  
+    produto.codigo_produto = proximo_id_prod  
     banco_produto.append(produto)
-    proximo_id_prod += 1  # Incrementa o próximo ID
+    proximo_id_prod += 1
     return produto
 
     
@@ -98,7 +98,6 @@ def remover_produto(produto_id: int):
             banco_produto.pop(index)
             return {"mensagem":"Produto removido com sucesso"}
     return {"Erro": "Produto não localizado"}
-
 
 # CLIENTES
 
@@ -118,12 +117,12 @@ def obter_cliente(cliente_id: int):
     return {"Erro": "Cliente não localizado"}
 
 
-@app.post('/clientes', response_model=Pessoa)  # Definindo o modelo de resposta como Produto
+@app.post('/clientes', response_model=Pessoa) 
 def criar_cliente(pessoa: Pessoa):
-    global proximo_id_Pessoa  # Acessa a variável global
-    pessoa.codigo_pessoa = proximo_id_Pessoa  # Atribui o próximo ID ao produto
+    global proximo_id_Pessoa  
+    pessoa.codigo_pessoa = proximo_id_Pessoa
     banco_pessoa.append(pessoa)
-    proximo_id_Pessoa += 1  # Incrementa o próximo ID
+    proximo_id_Pessoa += 1  
     return pessoa
 
 # DELETE
@@ -134,8 +133,6 @@ def remover_cliente(cliente_id: int):
             banco_pessoa.pop(index)
             return {"mensagem":"Cliente removido com sucesso"}
     return {"Erro": "Cliente não localizado"}
-
-
 
 # FUNCIONARIOS
 
@@ -172,9 +169,6 @@ def remover_funcionario(funcionario_id: int):
             banco_funcionario.pop(index)
             return {"mensagem":"Funcionario removido com sucesso"}
     return {"Erro": "Funcionario não localizado"}
-
-
-
 
 
 
