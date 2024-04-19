@@ -82,6 +82,7 @@
                       <th scope="col">Bairro</th>
                       <th scope="col">Cidade</th>
                       <th scope="col">Estado</th>
+                      <th scope="col">Ações</th>
                   `;
         thead.appendChild(headerRow);
         table.appendChild(thead);
@@ -101,21 +102,40 @@
                           <td>${funcionario.bairro}</td>
                           <td>${funcionario.cidade}</td>
                           <td>${funcionario.estado}</td>
+                          <td><button class="btn btn-danger btn-sm btn-remover" data-id="${funcionario.codigo_funcionario}">Remover</button></td>
                       `;
           tbody.appendChild(row);
         });
         table.appendChild(tbody);
 
         listaFuncionarios.appendChild(table);
-      } catch (error) {
-        console.error('Erro ao carregar funcionarios:', error);
-        alert('Erro ao carregar funcionarios. Tente novamente mais tarde.');
-      }
-    }
-    carregarFuncionarios();
-  });
-</script>
+
+        const btnRemover = document.querySelectorAll('.btn-remover');
+                    btnRemover.forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const id = btn.getAttribute('data-id');
+                            try {
+                                await axios.delete(`http://localhost:8000/funcionarios/${id}`);
+                                alert('Funcionário removido com sucesso!');
+                                // Recarrega a lista de funcionários após a remoção
+                                carregarFuncionarios();
+                            } catch (error) {
+                                console.error('Erro ao remover funcionário:', error);
+                                alert('Erro ao remover funcionário. Tente novamente mais tarde.');
+                            }
+                        });
+                    });
+                } catch (error) {
+                    console.error('Erro ao carregar funcionarios:', error);
+                    alert('Erro ao carregar funcionarios. Tente novamente mais tarde.');
+                }
+            }
+            carregarFuncionarios();
+        });
+    </script>
 </body>
+
 </html>
+
 
 
