@@ -99,20 +99,37 @@
                             <td>${produto.tamanho}</td>
                             <td>${produto.peso}</td>
                             <td>${produto.marca}</td>
+                            <td><button class="btn btn-danger btn-sm btn-remover" data-id="${produto.codigo_produto}"><i class="bi bi-trash3-fill"></i></button></td>
+                            <td><button class="btn btn-warning btn-sm btn-remover" data-id="${produto.codigo_produto}"><i class="bi bi-pencil-fill"></i></i></button></td>
                         `;
             tbody.appendChild(row);
           });
           table.appendChild(tbody);
 
           listaProdutos.appendChild(table);
-        } catch (error) {
-          // console.error('Erro ao carregar produtos:', error);
-          // alert('Erro ao carregar produtos. Tente novamente mais tarde.');
-        }
-      }
 
-      carregarProdutos();
-    });
+          const btnRemover = document.querySelectorAll('.btn-remover');
+                    btnRemover.forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const id = btn.getAttribute('data-id');
+                            try {
+                                await axios.delete(`http://localhost:8000/produtos/${id}`);
+                                alert('Produto removido com sucesso!');
+                                // Recarrega a lista de funcionários após a remoção
+                                carregarProdutos();
+                            } catch (error) {
+                                console.error('Erro ao remover produto:', error);
+                                alert('Erro ao remover produto. Tente novamente mais tarde.');
+                            }
+                        });
+                    });
+                } catch (error) {
+                    console.error('Erro ao carregar produtos:', error);
+                    alert('Erro ao carregar produtos. Tente novamente mais tarde.');
+                }
+            }
+            carregarProdutos();
+        });
   </script>
 </body>
 

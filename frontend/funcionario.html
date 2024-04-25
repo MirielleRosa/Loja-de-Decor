@@ -47,9 +47,6 @@
     <ul id="listaFuncionarios"></ul>
     <div class="d-flex mt-5 p-4 gap-2">
       <a href="cadFuncionario.html" class="btn btn-primary me-4" id="inserir" type="button" role="button">Inserir</a>
-      <a href="cadFuncionario.html" class="btn btn-warning me-4 text-light" id="alterar" type="button"
-        role="button">Alterar</a>
-      <a href="cadFuncionario.html" class="btn btn-danger me-4" id="remover" type="button" role="button">Remover</a>
     </div>
   </div>
 </div>
@@ -102,7 +99,8 @@
                           <td>${funcionario.bairro}</td>
                           <td>${funcionario.cidade}</td>
                           <td>${funcionario.estado}</td>
-                          <td><button class="btn btn-danger btn-sm btn-remover" data-id="${funcionario.codigo_funcionario}">Remover</button></td>
+                          <td><button class="btn btn-danger btn-sm btn-remover" data-id="${funcionario.codigo_funcionario}"><i class="bi bi-trash3-fill"></i></button></td>
+                          <td><button class="btn btn-warning btn-sm btn-remover" data-id="${funcionario.codigo_funcionario}"><i class="bi bi-pencil-fill"></i></i></button></td>
                       `;
           tbody.appendChild(row);
         });
